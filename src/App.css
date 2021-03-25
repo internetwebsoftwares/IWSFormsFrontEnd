@@ -1,38 +1,262 @@
-.App {
-  text-align: center;
+/* Poppins font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+/* Nunito font */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 p,
+button,
+div,
+small,
+ul,
+li {
+  font-family: "Nunito";
+}
+.thin {
+  font-weight: 200;
+}
+.regular {
+  font-weight: 400;
+}
+.bold {
+  font-weight: 700;
+}
+
+.project-name-input {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #e6e6e6;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  text-indent: 0.5rem;
+}
+
+.project-name-input:focus {
+  border-bottom: 2px solid dodgerblue;
+}
+
+.select-tools {
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  background-color: #fff;
+}
+
+.my-alert {
+  width: 95%;
+  max-width: 500px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+}
+
+.my-alert-input {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  border: 1px solid #ccc;
+  padding: 0.3rem;
+  text-indent: 0.5rem;
+  outline: none;
+}
+.view-answer-box {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.max-100 {
+  width: 100%;
+  max-width: 100px;
+}
+.max-400 {
+  width: 100%;
+  max-width: 400px;
+}
+.max-800 {
+  width: 100%;
+  max-width: 800px;
+}
+
+.big-20 {
+  font-size: 20rem;
+}
+
+.big-icon-container {
+  position: absolute;
+  z-index: -1;
+  transform: rotate(-15deg);
+  opacity: 0.035;
+}
+
+.account-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-family: "Nunito";
+  background-color: brown;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.account-btn:hover {
+  background-color: rgb(202, 41, 41);
+}
+
+.confirm-alert {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2rem;
+  border-radius: 0.5rem;
+}
+.app-menu::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #343a40;
+  position: absolute;
+  right: 0;
+  top: -10px;
+  z-index: 1;
+  transform: translateX(-28%) rotate(45deg);
+}
+.app-menu {
+  position: absolute;
+  background-color: #343a40;
+  right: 0.5rem;
+  top: 4.5rem;
+  z-index: 10;
+  width: max-content;
+}
+.app-menu a {
+  line-height: 2rem;
+  list-style: none;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+.app-menu a:hover {
+  background-color: #007bff;
+}
+
+.floating-alert {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  top: 38px;
+  left: 50%;
+  transform: translateX(-50%);
+  -moz-animation: floatingAlert ease-in 5s forwards;
+  -webkit-animation: floatingAlert ease-in 5s forwards;
+  -o-animation: floatingAlert ease-in 5s forwards;
+  animation: floatingAlert ease-in 5s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.floating-alerts .floating-alert:last-of-type {
+  display: block;
+  position: fixed;
+  width: max-content;
+}
+
+.left-panel ul {
+  margin: 0;
+  padding: 0;
+}
+.left-panel ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  line-height: 3rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+.left-panel ul li:hover {
+  background-color: #f2f2f2;
+  color: #000;
+}
+.active {
+  background-color: dodgerblue;
   pointer-events: none;
+  color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.search-bar {
+  border: 1px solid #ccc;
+  outline: none;
+  caret-color: dodgerblue;
+  line-height: 2rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.report-alert {
+  position: fixed;
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.answer-sheet-marks {
+  border: 2px solid #dc3545;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  transform: rotate(-30deg);
 
-.App-link {
-  color: #61dafb;
+  user-select: none;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.answer-sheet-marks p {
+  font-size: 1.5rem;
+  color: #dc3545;
+}
+.answer-sheet-marks div {
+  height: 12px;
+  width: 100%;
+  background-color: #dc3545;
+}
+@keyframes floatingAlert {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) scale(1.2);
   }
-  to {
-    transform: rotate(360deg);
+
+  9% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+  }
+
+  91% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) scale(1.2);
   }
 }
