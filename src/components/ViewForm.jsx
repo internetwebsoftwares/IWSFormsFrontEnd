@@ -285,13 +285,14 @@ function ViewForm() {
           This content niether created nor endorsed by IWS Forms
           <br />
           <br />
-          <button
+          <a
+            href="#"
             ref={reportBtn}
             onClick={() => setIsReportAlertOpen(true)}
-            className="btn btn-secondary btn-sm shadow-sm"
+            className=""
           >
             Report this form
-          </button>
+          </a>
         </div>
       </Page>
     </>

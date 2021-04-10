@@ -17,6 +17,7 @@ const YourForms = React.lazy(() => import("./components/YourForms"));
 const FormManage = React.lazy(() => import("./components/FormManage"));
 const AboutUs = React.lazy(() => import("./components/AboutUs"));
 const Terms = React.lazy(() => import("./components/Terms"));
+const FAQs = React.lazy(() => import("./components/FAQs"));
 const ViewForm = React.lazy(() => import("./components/ViewForm"));
 const Page404 = React.lazy(() => import("./components/Page404"));
 const AccountSecurity = React.lazy(() =>
@@ -95,6 +96,9 @@ function App() {
             </Route>
             <Route path="/terms">
               <Terms />
+            </Route>
+            <Route path="/faqs">
+              <FAQs />
             </Route>
             <ProtectedRoute path="/your-forms">
               <YourForms />

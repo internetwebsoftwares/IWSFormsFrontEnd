@@ -15,7 +15,8 @@ export default function Footer() {
         {new Date().getFullYear()}. All rights reserved
       </p>
       <div>
-        <Link to="/about-us">About us</Link> | <Link to="/terms">Terms</Link>
+        <Link to="/about-us">About us</Link> | <Link to="/terms">Terms</Link> |{" "}
+        <Link to="/faqs">FAQs</Link>
       </div>
     </div>
   );
