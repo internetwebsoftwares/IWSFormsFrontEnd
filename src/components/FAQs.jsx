@@ -4,7 +4,7 @@ import Page from "./Page";
 export default function FAQs() {
   return (
     <Page title="FAQs">
-      <div className="container max-400 mt-5 p-5 bg-white shadow-sm">
+      <div className="container bg-white shadow-sm mt-5 p-5">
         <h3>Frequently asked questions</h3>
         <hr />
         <p>
