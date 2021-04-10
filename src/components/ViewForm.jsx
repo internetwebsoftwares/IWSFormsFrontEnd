@@ -70,7 +70,7 @@ function ViewForm() {
         }
       }
       answers = [...new Set(answers)];
-      await axios.post(
+      const response = await axios.post(
         `/form/${id}/answer`,
         {
           answersByUser: answers,
@@ -82,8 +82,12 @@ function ViewForm() {
         }
       );
       setIsSubmitting(false);
+      if (response.data === "Form is no longer accepting responses.") {
+        addFlashMessage(response.data, "danger");
+        return;
+      }
       setAlreadySubmitted(true);
-      addFlashMessage("Form submitted successfully", "success");
+      addFlashMessage(response.data, "success");
     } catch (error) {
       console.log(error);
     }
@@ -138,6 +142,18 @@ function ViewForm() {
   }
   if (isReporting) {
     return <div className="text-center mt-5">Reporting please wait..</div>;
+  }
+
+  if (!form.isAcceptingResponses) {
+    return (
+      <div className="container bg-white mt-5 p-5 shadow-sm">
+        <h3>{form.formName}</h3>
+        <h5>{form.institutionName}</h5>
+        <p className="text-muted">
+          This form has stopped taking responses. please contact the owner
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -195,13 +211,7 @@ function ViewForm() {
                 <small>You have reported this form</small>
               </p>
             ) : (
-              <button
-                ref={reportBtn}
-                onClick={() => setIsReportAlertOpen(true)}
-                className="btn btn-secondary btn-sm shadow-sm"
-              >
-                Report this form
-              </button>
+              ""
             )}
           </div>
 
@@ -269,6 +279,19 @@ function ViewForm() {
               </form>
             </div>
           )}
+        </div>
+        <div className="container mt-3 text-center text-muted">
+          <hr />
+          This content niether created nor endorsed by IWS Forms
+          <br />
+          <br />
+          <button
+            ref={reportBtn}
+            onClick={() => setIsReportAlertOpen(true)}
+            className="btn btn-secondary btn-sm shadow-sm"
+          >
+            Report this form
+          </button>
         </div>
       </Page>
     </>

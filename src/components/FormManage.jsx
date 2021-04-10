@@ -9,6 +9,7 @@ function FormManage(props) {
   const [isManaging, setIsManaging] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isConfirmAlertOpen, setIsConfirmAlertOpen] = useState(false);
+  const [isAcceptingResponses, setIsAcceptingResponses] = useState();
   const [form, setForm] = useState({
     formName: ".....",
   });
@@ -40,12 +41,7 @@ function FormManage(props) {
         }
       );
       setIsManaging(false);
-      setForm({
-        ...form,
-        isAcceptingResponses: `${
-          response.data === "Form is accepting responses: false" ? false : true
-        }`,
-      });
+      setIsAcceptingResponses(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -88,10 +84,10 @@ function FormManage(props) {
               <form onSubmit={handleAcceptingResponses}>
                 <button
                   className={`btn mr-2 btn-outline-${
-                    form.isAcceptingResponses ? "danger" : "success"
+                    isAcceptingResponses ? "danger" : "success"
                   } btn-sm shadow-sm`}
                 >
-                  {form.isAcceptingResponses ? "Stop " : "Start "} accepting
+                  {isAcceptingResponses ? "Stop " : "Start "} accepting
                   responses
                 </button>
               </form>
