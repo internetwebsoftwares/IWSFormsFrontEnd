@@ -55,10 +55,11 @@ li {
   background-color: #fff;
 }
 
-.my-alert {
+.my-alert,
+.vote-alert {
   width: 95%;
   max-width: 500px;
-  top: 0;
+  top: 1rem;
   left: 50%;
   transform: translateX(-50%);
   position: fixed;
@@ -109,23 +110,42 @@ li {
   align-items: center;
   border-radius: 50%;
   font-family: "Nunito";
-  background-color: brown;
   text-transform: uppercase;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.account-btn:hover {
-  background-color: rgb(202, 41, 41);
-}
 
 .confirm-alert {
   position: absolute;
   left: 50%;
+  width: 100%;
+  max-width: 300px;
   transform: translateX(-50%);
   top: 2rem;
   border-radius: 0.5rem;
 }
+
+.logout-page {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.profile {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
 .app-menu::before {
   content: "";
   width: 20px;
@@ -143,16 +163,33 @@ li {
   right: 0.5rem;
   top: 4.5rem;
   z-index: 10;
-  width: max-content;
+  width: 70%;
+  max-width: 250px;
 }
 .app-menu a {
-  line-height: 2rem;
+  line-height: 2.6rem;
   list-style: none;
   padding: 0 1rem;
   cursor: pointer;
 }
 .app-menu a:hover {
   background-color: #007bff;
+}
+
+.app-menu .logout-btn:hover {
+  background-color: #007bff;
+  border: none;
+}
+
+.menu-backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  position: fixed;
+  z-index: 9;
+  cursor: pointer;
+  top: 0;
+  left: 0;
 }
 
 .floating-alert {
@@ -174,36 +211,6 @@ li {
   display: block;
   position: fixed;
   width: max-content;
-}
-
-.left-panel ul {
-  margin: 0;
-  padding: 0;
-}
-.left-panel ul li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  padding-left: 1rem;
-  line-height: 3rem;
-  cursor: pointer;
-  font-weight: 700;
-}
-.left-panel ul li:hover {
-  background-color: #f2f2f2;
-  color: #000;
-}
-.active {
-  background-color: dodgerblue;
-  pointer-events: none;
-  color: #fff;
-}
-
-.search-bar {
-  border: 1px solid #ccc;
-  outline: none;
-  caret-color: dodgerblue;
-  line-height: 2rem;
 }
 
 .report-alert {

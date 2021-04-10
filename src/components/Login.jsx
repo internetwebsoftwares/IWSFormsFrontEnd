@@ -8,7 +8,9 @@ function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const { setIsLoggedIn, addFlashMessage } = useContext(MainContext);
+  const { setIsLoggedIn, addFlashMessage, locationToRedirect } = useContext(
+    MainContext
+  );
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoggingIn(true);
@@ -25,7 +27,8 @@ function Login(props) {
     localStorage.setItem("iwsform-user", JSON.stringify(response.data.user));
     localStorage.setItem("iwsform-token", JSON.stringify(response.data.token));
     setIsLoggedIn(true);
-    props.history.push("/");
+    console.log(locationToRedirect);
+    props.history.push(locationToRedirect);
   }
   return (
     <Page title="Login">

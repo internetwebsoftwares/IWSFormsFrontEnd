@@ -11,7 +11,9 @@ function Signup(props) {
   const [password, setPassword] = useState("");
   const [country, setCountry] = useState("");
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const { setIsLoggedIn, addFlashMessage } = useContext(MainContext);
+  const { setIsLoggedIn, addFlashMessage, locationToRedirect } = useContext(
+    MainContext
+  );
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -31,7 +33,7 @@ function Signup(props) {
     localStorage.setItem("iwsform-user", JSON.stringify(response.data.user));
     localStorage.setItem("iwsform-token", JSON.stringify(response.data.token));
     setIsLoggedIn(true);
-    props.history.push("/");
+    props.history.push(locationToRedirect);
   }
   return (
     <Page title="Register">

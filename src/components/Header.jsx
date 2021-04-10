@@ -3,11 +3,9 @@ import MainContext from "../MainContext";
 import HeaderLoggedIn from "./HeaderLoggedIn";
 import HeaderLoggedOut from "./HeaderLoggedOut";
 import logo from "../iws-logo-white.svg";
-import Menu from "./Menu";
 
 export default function Header() {
   const { isLoggedIn } = useContext(MainContext);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
       <header className="app-header shadow-lg bg-primary p-3 d-flex justify-content-between align-items-center">
@@ -27,13 +25,8 @@ export default function Header() {
             <span className="logo-title">Forms</span>
           </h3>
         </a>
-        {isLoggedIn ? (
-          <HeaderLoggedIn setIsMenuOpen={setIsMenuOpen} />
-        ) : (
-          <HeaderLoggedOut />
-        )}
+        {isLoggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
       </header>
-      {isMenuOpen && <Menu setIsMenuOpen={setIsMenuOpen} />}
     </>
   );
 }

@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import CheckboxComponent from "./CheckboxComponent";
 import Page from "./Page";
 import RadioComponent from "./RadioComponent";
 import MainContext from "../MainContext";
+import LoadingIcon from "./LoadingIcon";
 
 function ViewForm() {
   const id = document.location.pathname.split("/")[2];
@@ -15,14 +16,17 @@ function ViewForm() {
   const [reportBtnActive, setReportBtnActive] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const myId = JSON.parse(localStorage.getItem("iwsform-user"))._id;
-  const [alreadySubmitted, setAlreadySubmitted] = useState();
+  const [alreadySubmitted, setAlreadySubmitted] = useState(false);
+  const reportBtn = useRef();
 
   useEffect(() => {
     async function loadForm() {
       try {
         const response = await axios.get(`/form/${id}/`);
         setForm(response.data);
-        setAlreadySubmitted(response.data.alreadySubmitted.includes(myId));
+        setAlreadySubmitted(
+          Boolean(response.data.alreadySubmitted.includes(myId))
+        );
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -98,19 +102,19 @@ function ViewForm() {
           },
         }
       );
-      console.log(response.data);
       setIsReportAlertOpen(false);
       setIsReporting(false);
       addFlashMessage("Reported successfully.", "success");
+      reportBtn.current.style.display = "none";
     } catch (error) {
       console.log(error);
     }
   }
 
   if (isLoading) {
-    return <p className="text-center mt-5">Loading please wait...</p>;
+    return <LoadingIcon />;
   }
-  if (isLoading) {
+  if (isReporting) {
     return <p className="text-center mt-5">Reporting a file please wait...</p>;
   }
   if (isSubmitting) {
@@ -131,6 +135,9 @@ function ViewForm() {
         <p>You have submitted this form.</p>
       </div>
     );
+  }
+  if (isReporting) {
+    return <div className="text-center mt-5">Reporting please wait..</div>;
   }
 
   return (
@@ -181,12 +188,21 @@ function ViewForm() {
               </h2>
               <h4 className="text-dark">{form.formName}</h4>
             </div>
-            <button
-              onClick={() => setIsReportAlertOpen(true)}
-              className="btn btn-secondary btn-sm shadow-sm"
-            >
-              Report this form
-            </button>
+            {form.reportedBy.includes(
+              JSON.parse(localStorage.getItem("iwsform-user"))._id
+            ) ? (
+              <p className="text-danger">
+                <small>You have reported this form</small>
+              </p>
+            ) : (
+              <button
+                ref={reportBtn}
+                onClick={() => setIsReportAlertOpen(true)}
+                className="btn btn-secondary btn-sm shadow-sm"
+              >
+                Report this form
+              </button>
+            )}
           </div>
 
           <hr />
@@ -198,8 +214,12 @@ function ViewForm() {
                 key={question._id}
               >
                 <div className="d-flex align-items-center">
-                  <p className="mr-2">{index + 1})</p>
-                  <p>{question.question}</p>
+                  <p className="mr-2">
+                    <b>{index + 1})</b>
+                  </p>
+                  <p>
+                    <b>{question.question}</b>
+                  </p>
                 </div>
                 <div className="answers-input">
                   {question.inputMethod === "" && (

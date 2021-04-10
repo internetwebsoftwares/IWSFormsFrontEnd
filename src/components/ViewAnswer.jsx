@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import MainContext from "../MainContext";
+import LoadingIcon from "./LoadingIcon";
 import Page from "./Page";
 function ViewAnswer() {
   const id = window.location.pathname.split("/")[1];
@@ -19,7 +20,7 @@ function ViewAnswer() {
             Authorization: JSON.parse(localStorage.getItem("iwsform-token")),
           },
         });
-        console.log(response.data);
+
         setAnswer(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -57,7 +58,7 @@ function ViewAnswer() {
   }
 
   if (isLoading) {
-    return <div className="text-center mt-5">Loading answer....</div>;
+    return <LoadingIcon />;
   }
   if (isChecking) {
     return (
@@ -69,9 +70,13 @@ function ViewAnswer() {
   return (
     <Page title={`${answer.formName} answered by ${answer.postedByUsername}`}>
       <div className="container mt-5 bg-white p-4 shadow-sm">
-        {answer.isChecked && (
+        {answer.isChecked && answer.remark !== "fail" ? (
           <p className="text-success">
-            <b>Checked</b>
+            <b>{answer.remark}</b>
+          </p>
+        ) : (
+          <p className="text-success">
+            <b>{answer.remark}</b>
           </p>
         )}
         <div className="d-flex justify-content-end p-0">
