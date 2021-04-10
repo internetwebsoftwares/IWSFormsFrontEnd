@@ -284,7 +284,6 @@ function ViewForm() {
           <hr />
           This content niether created nor endorsed by IWS Forms
           <br />
-          <br />
           <a
             href="#"
             ref={reportBtn}
