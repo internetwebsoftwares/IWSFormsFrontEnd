@@ -19,6 +19,7 @@ function FormManage(props) {
         const response = await axios.get(`/form/${id}`);
 
         setIsLoading(false);
+        setIsAcceptingResponses(response.data.isAcceptingResponses);
         setForm(response.data);
       } catch (error) {
         console.log(error);
@@ -50,7 +51,7 @@ function FormManage(props) {
     e.preventDefault();
     setIsDeleting(true);
     try {
-      const response = await axios.delete(`/form/${id}/delete`, {
+      await axios.delete(`/form/${id}/delete`, {
         headers: {
           Authorization: JSON.parse(localStorage.getItem("iwsform-token")),
         },
