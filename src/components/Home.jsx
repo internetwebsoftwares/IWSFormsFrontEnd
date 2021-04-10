@@ -13,7 +13,7 @@ function Home(props) {
       <div className="container d-flex justify-content-center my-5">
         <div className="max-800">
           <h1 className="text-center">
-            <b>Welcome,</b> to IWS Forms
+            Welcome, to <b>IWS Forms</b>
           </h1>
           <h3 className="mt-0 text-center text-muted">
             The next generation plartform to create forms for{" "}
