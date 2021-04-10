@@ -73,7 +73,7 @@ export default function MyAlert({ setQuestions, setIsAlertOpen }) {
       <div>
         <input
           autoFocus
-          placeholder="Add question"
+          placeholder="Enter question"
           type="text"
           className="shadow-sm my-alert-input"
           onChange={(e) => setQuestion(e.target.value)}
