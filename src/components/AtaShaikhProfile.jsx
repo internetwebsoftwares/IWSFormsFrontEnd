@@ -19,7 +19,7 @@ export default function AtaShaikhProfile() {
         </h4>
         <hr />
         <h5>
-          <a href="https://internetwebsoftwares.github.io/porfolio/">
+          <a href="https://internetwebsoftwares.github.io/portfolio/">
             Portfolio
           </a>{" "}
           {" | "}
